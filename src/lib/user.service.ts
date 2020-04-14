@@ -1,7 +1,7 @@
 const Configstore = require('configstore');
 const pkg = require('../../package.json');
 
-import { rest } from './rest-client';
+import { rest } from './rest-client.service';
 const conf = new Configstore(pkg.name);
 
 class UserService {

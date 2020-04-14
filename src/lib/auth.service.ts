@@ -9,7 +9,7 @@ export class AuthService {
 
     }
 
-    async isLoggedIn() {
-        
+    async isLoggedIn(): Promise<boolean> {
+        return true;
     }
 }

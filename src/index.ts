@@ -31,9 +31,9 @@ console.log(
 
 const httpClient = require('./lib/rest-client');
 
-import { rest } from './lib/rest-client';
-import { crypto } from './lib/crypto';
-import { userService } from './lib/user';
+import { rest } from './lib/rest-client.service';
+import { crypto } from './lib/crypto.service';
+import { userService } from './lib/user.service';
 
 // const rest = new RestService();
 // const crypto = new CryptoService()
@@ -81,7 +81,7 @@ const test = async () => {
     console.log(users);
     const us = await userService.getUserInfo();
     console.log(us)
-    await userService.updateUser({name: 'Aman Mehto', publicKey: 'asdnasjdnasijdkn'})
+    await userService.updateUser({name: 'Rohan Mehto', publicKey: 'asdnasjdnasijdkn'})
 
 }
 

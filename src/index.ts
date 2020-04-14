@@ -32,7 +32,8 @@ console.log(
 const httpClient = require('./lib/rest-client');
 
 import { rest } from './lib/rest-client';
-import { crypto } from './lib/crypto' 
+import { crypto } from './lib/crypto';
+import { userService } from './lib/user';
 
 // const rest = new RestService();
 // const crypto = new CryptoService()
@@ -74,6 +75,13 @@ const test = async () => {
     // const sign = await crypto.generateDetachedSignature();
     // console.log(sign);
     // console.log(await crypto.verifyDetachedSignature(sign.detachedSignature, sign.clearText, publicKey))
+
+    await userService.setUserConf('http://localhost:3000', '442f0ebe-39b5-4698-91f5-28298b3d83c0');
+    const users = await userService.listUsers();
+    console.log(users);
+    const us = await userService.getUserInfo();
+    console.log(us)
+    await userService.updateUser({name: 'Aman Mehto', publicKey: 'asdnasjdnasijdkn'})
 
 }
 

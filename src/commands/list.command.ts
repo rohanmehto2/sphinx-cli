@@ -2,8 +2,8 @@ import { userService } from '../lib/user.service';
 import { EMOJIS } from '../lib/ui.service';
 import { secretService } from '../lib/secret.service';
 import { Table } from 'console-table-printer';
-const chalk = require('chalk');
-const log = console.log;
+// const chalk = require('chalk');
+// const log = console.log;
 
 class List {
 

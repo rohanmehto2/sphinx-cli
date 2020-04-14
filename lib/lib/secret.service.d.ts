@@ -1,5 +1,5 @@
 declare class SecretService {
-    listSecrets(): Promise<any>;
+    getAllSecrets(): Promise<any>;
     createSecret(secretObj: object): Promise<object>;
     readSecret(secret: object): Promise<boolean>;
 }

@@ -6,6 +6,7 @@ export declare const EMOJIS: {
     LOCK_KEY: string;
     PERSON: string;
     EMAIL: string;
+    PAGE: string;
     HEART: string;
     COFFEE: string;
     BEER: string;
@@ -23,4 +24,10 @@ export declare const EMOJIS: {
     BOOM: string;
     PRAY: string;
     WINE: string;
+};
+export declare const MESSAGES: {
+    ASK_EMAIL: string;
+    ASK_EMAIL_ERR: string;
+    ASK_PWD: string;
+    ASK_PWD_ERR: string;
 };

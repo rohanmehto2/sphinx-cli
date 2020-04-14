@@ -1,4 +1,5 @@
 import { get } from 'node-emoji';
+const chalk = require('chalk');
 
 export const EMOJIS = {
     KEY: get('key'),
@@ -27,3 +28,10 @@ export const EMOJIS = {
     PRAY: get('pray'),
     WINE: get('wine_glass'),
 };
+
+export const MESSAGES = {
+    ASK_EMAIL: `${EMOJIS.EMAIL}  Enter your registered e-mail address:`,
+    ASK_EMAIL_ERR: `${chalk.red('Please enter your username or e-mail address.')}`,
+    ASK_PWD: `${EMOJIS.KEY} ${chalk.greenBright('Enter your password:')}`,
+    ASK_PWD_ERR: `${chalk.red('Please enter your password')}`,
+}

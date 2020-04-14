@@ -7,6 +7,9 @@ const path = require('path');
 const program = require('commander');
 
 import { list } from './commands/list.command';
+import { login } from './commands/login.command';
+import { logout } from './commands/logout.command';
+import { configure } from './commands/configure.command';
 
 const log = console.log;
 
@@ -16,20 +19,6 @@ log(
     figlet.textSync('sphinx-cli', { horizontalLayout: 'full' })
   )
 );
-
-// program
-//   .version('0.0.1')
-//   .description("An example CLI for ordering pizza's")
-//   .option('-p, --peppers', 'Add peppers')
-//   .option('-P, --pineapple', 'Add pineapple')
-//   .option('-b, --bbq', 'Add bbq sauce')
-//   .option('-c, --cheese <type>', 'Add the specified type of cheese [marble]')
-//   .option('-C, --no-cheese', 'You do not want any cheese')
-//   .parse(process.argv);
-
-//   if (!process.argv.slice(2).length) {
-//     program.outputHelp();
-//   }
 
 program
     .version('0.0.1')
@@ -51,16 +40,37 @@ program
                 log(chalk.red(`Invalid <resource> type ${chalk.redBright(resource)}`));
                 break;
         };
-    })
+    });
 
+program
+    .command('login')
+    .description('Login service')
+    .action(async () => {
+        await login.login();
+    });
 
+program
+    .command('logout')
+    .description('Logout service')
+    .action(async () => {
+        await logout.logout();
+    });
 
-program.parse(process.argv);
+program
+    .command('configure')
+    .description('Configure sphinx CLI')
+    .action(async () => {
+        await configure.conf();
+    });
+
 
 if (!process.argv.slice(2).length) {
     program.outputHelp();
+    process.exit();
 }
-  
+
+program.parse(process.argv);
+
 //dev scripts
 
 // const httpClient = require('./lib/rest-client');

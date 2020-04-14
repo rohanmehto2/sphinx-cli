@@ -20,6 +20,7 @@
   "author": "Rohan Mehto <rohanmehto1910@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/inquirer": "^6.5.0",
     "@types/node-emoji": "^1.8.1",
     "axios": "^0.19.2",
     "chalk": "^4.0.0",

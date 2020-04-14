@@ -2,7 +2,7 @@ import { userService } from './user.service';
 import { rest } from './rest-client.service';
 
 class SecretService {
-    async listSecrets(): Promise<any> {
+    async getAllSecrets(): Promise<any> {
         const user = await userService.getUserInfo();
         return user.receivedSecrets;
     }
@@ -16,6 +16,8 @@ class SecretService {
         
         return true;
     }
+
+
 }
 
 export const secretService = new SecretService();

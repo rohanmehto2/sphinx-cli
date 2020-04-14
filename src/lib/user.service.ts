@@ -28,6 +28,13 @@ class UserService {
         conf.set('sphinx.email', email);
         return true;
     }
+
+    // async prepareUserMap() {
+    //     const users = await this.listUsers();
+    //     for (let user of users) {
+            
+    //     }
+    // }
 }
 
 export const userService = new UserService();

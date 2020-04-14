@@ -6,8 +6,12 @@ const figlet = require('figlet');
 const path = require('path');
 const program = require('commander');
 
-clear();
-console.log(
+import { list } from './commands/list.command';
+
+const log = console.log;
+
+// clear();
+log(
   chalk.red(
     figlet.textSync('sphinx-cli', { horizontalLayout: 'full' })
   )
@@ -26,65 +30,95 @@ console.log(
 //   if (!process.argv.slice(2).length) {
 //     program.outputHelp();
 //   }
+
+program
+    .version('0.0.1')
+    .description('Sphinx CLI tool to share secrets');
+
+program
+    .command('list <resource>')
+    .alias('ls')
+    .description('List members or secrets')
+    .action(async (resource: string) => {
+        switch (resource) {
+            case 'members':
+                await list.listMembers();    
+                break;
+            case 'secrets':
+                await list.listSecrets();
+                break;
+            default:
+                log(chalk.red(`Invalid <resource> type ${chalk.redBright(resource)}`));
+                break;
+        };
+    })
+
+
+
+program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
   
 //dev scripts
 
-const httpClient = require('./lib/rest-client');
+// const httpClient = require('./lib/rest-client');
 
-import { rest } from './lib/rest-client.service';
-import { crypto } from './lib/crypto.service';
-import { userService } from './lib/user.service';
+// import { rest } from './lib/rest-client.service';
+// import { crypto } from './lib/crypto.service';
+// import { userService } from './lib/user.service';
 
-// const rest = new RestService();
-// const crypto = new CryptoService()
+// // const rest = new RestService();
+// // const crypto = new CryptoService()
 
-const test = async () => {
-    let url = 'http://localhost:3000/member';
-    let args = {
-        params: {
-            id: '442f0ebe-39b5-4698-91f5-28298b3d83c0'
-        }
-    }
-    let path = '442f0ebe-39b5-4698-91f5-28298b3d83c0';
-    // console.log(await rest.httpGet(url, path));
+// const test = async () => {
+//     let url = 'http://localhost:3000/member';
+//     let args = {
+//         params: {
+//             id: '442f0ebe-39b5-4698-91f5-28298b3d83c0'
+//         }
+//     }
+//     let path = '442f0ebe-39b5-4698-91f5-28298b3d83c0';
+//     // console.log(await rest.httpGet(url, path));
 
-    url = 'http://localhost:3000/secret'
-    let data = {
-        secretName: "RDS jaskldPasswordasd prod",
-	    secret: "ajsd8asn0d0annda;ksdlcabdsdabsudbas9d8bas89dbsdasoudaubsado8b",
-        receiver: "442f0ebe-39b5-4698-91f5-28298b3d83c0",
-        sender: "4686f72d-e1a8-4b1b-8bc6-857fffa93a9c",
-        createdBy: "4686f72d-e1a8-4b1b-8bc6-857fffa93a9c"
-    }
-    // console.log(await rest.httpPost(url, data));
+//     url = 'http://localhost:3000/secret'
+//     let data = {
+//         secretName: "RDS jaskldPasswordasd prod",
+// 	    secret: "ajsd8asn0d0annda;ksdlcabdsdabsudbas9d8bas89dbsdasoudaubsado8b",
+//         receiver: "442f0ebe-39b5-4698-91f5-28298b3d83c0",
+//         sender: "4686f72d-e1a8-4b1b-8bc6-857fffa93a9c",
+//         createdBy: "4686f72d-e1a8-4b1b-8bc6-857fffa93a9c"
+//     }
+//     // console.log(await rest.httpPost(url, data));
 
-    url = 'http://localhost:3000/member';
-    let updateData = {
-        name: "Rohan Mehto",
-        publicKey: "updated"
-    }
-    let id = '442f0ebe-39b5-4698-91f5-28298b3d83c0';
-    // console.log(await rest.httpPut(url, id, updateData))
+//     url = 'http://localhost:3000/member';
+//     let updateData = {
+//         name: "Rohan Mehto",
+//         publicKey: "updated"
+//     }
+//     let id = '442f0ebe-39b5-4698-91f5-28298b3d83c0';
+//     // console.log(await rest.httpPut(url, id, updateData))
 
-    console.log(await crypto.keyExists());
-    const publicKey = await crypto.generateKeyPair('Rohan Mehto', 'rohan@cai.fi')
-    const cipher = await crypto.encrypt('THis is my secret', publicKey)
-    console.log(cipher)
-    const plain = await crypto.decrypt(cipher, publicKey)
-    console.log(plain)
-    // const sign = await crypto.generateDetachedSignature();
-    // console.log(sign);
-    // console.log(await crypto.verifyDetachedSignature(sign.detachedSignature, sign.clearText, publicKey))
+//     console.log(await crypto.keyExists());
+//     const publicKey = await crypto.generateKeyPair('Rohan Mehto', 'rohan@cai.fi')
+//     const cipher = await crypto.encrypt('THis is my secret', publicKey)
+//     console.log(cipher)
+//     const plain = await crypto.decrypt(cipher, publicKey)
+//     console.log(plain)
+//     // const sign = await crypto.generateDetachedSignature();
+//     // console.log(sign);
+//     // console.log(await crypto.verifyDetachedSignature(sign.detachedSignature, sign.clearText, publicKey))
 
-    await userService.setUserConf('http://localhost:3000', '442f0ebe-39b5-4698-91f5-28298b3d83c0');
-    const users = await userService.listUsers();
-    console.log(users);
-    const us = await userService.getUserInfo();
-    console.log(us)
-    await userService.updateUser({name: 'Rohan Mehto', publicKey: 'asdnasjdnasijdkn'})
+//     await userService.setUserConf('http://localhost:3000', '442f0ebe-39b5-4698-91f5-28298b3d83c0');
+//     const users = await userService.listUsers();
+//     console.log(users);
+//     const us = await userService.getUserInfo();
+//     console.log(us)
+//     await userService.updateUser({name: 'Rohan Mehto', publicKey: 'asdnasjdnasijdkn'})
 
-}
+// }
 
-test()
+// test()
 
 

@@ -15,6 +15,8 @@ export declare const EMOJIS: {
     WARNING: string;
     RELIEVED: string;
     CONFUSED: string;
+    SMILE: string;
+    HOURGLASS: string;
     HEART: string;
     COFFEE: string;
     BEER: string;
@@ -46,5 +48,11 @@ export declare const MESSAGES: {
     KEY_ROTATION_SUCCESS: string;
     KEY_ROTATION_ABORT: string;
     INVALID_INPUT: string;
+    SECRET_SUCCESS: string;
+    ASK_RECIPIENT: string;
+    ASK_SECRET_NAME: string;
+    ASK_SECRET: string;
+    ASK_DESC: string;
+    ASK_TTL: string;
     RESOURCE_INVALID: (res: string) => string;
 };

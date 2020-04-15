@@ -15,6 +15,7 @@ import { configure } from './commands/configure.command';
 import { MESSAGES } from './lib/ui.service';
 import { rotate } from './commands/rotate.command';
 import { update } from './commands/update.command';
+import { create } from './commands/create.command';
 
 // clear();
 log(
@@ -64,6 +65,21 @@ program
 	});
 
 program
+	.command('create <resource>')
+	.alias('c')
+	.description('Create resources <secret>')
+	.action(async (resource: string) => {
+		switch (resource) {
+			case 'secret':
+				await create.createSecret();
+				break;
+			default:
+				log(MESSAGES.RESOURCE_INVALID(resource));
+				break;
+		};
+	});
+
+program
 	.command('login')
 	.description('Login service')
 	.action(async () => {
@@ -79,7 +95,6 @@ program
 
 program
 	.command('configure')
-	.alias('c')
 	.description('Configure sphinx CLI')
 	.action(async () => {
 		await configure.conf();

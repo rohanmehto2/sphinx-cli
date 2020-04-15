@@ -1,5 +1,6 @@
 import { userService } from './user.service';
 import { rest } from './rest-client.service';
+import { crypto } from './crypto.service';
 
 class SecretService {
     async getAllSecrets(): Promise<any> {
@@ -7,7 +8,10 @@ class SecretService {
         return user.receivedSecrets;
     }
 
-    async createSecret(secretObj: object): Promise<object> {
+    async createSecret(secretObj: any): Promise<object> {
+        const publicKey = await userService.getPublicKeyByEmail(secretObj.recipientEmail);
+        const cipher = await crypto.encrypt(secretObj.secret, publicKey);
+        secretObj.secret = cipher;
         const secret = await rest.httpPost('/secret', secretObj);
         return secret;
     }

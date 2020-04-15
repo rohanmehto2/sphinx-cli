@@ -3,6 +3,7 @@ declare class InquirerService {
     askConfig(): Promise<any>;
     askName(): Promise<any>;
     askKeyRotationConfirmation(): Promise<any>;
+    askSecret(): Promise<any>;
 }
 export declare const inquirerService: InquirerService;
 export {};

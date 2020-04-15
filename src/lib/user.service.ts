@@ -33,6 +33,11 @@ class UserService {
         await rest.httpPut('/member', user.id, { publicKey });
     }
 
+    async getPublicKeyByEmail(email: string): Promise<string> {
+        const user = await rest.httpGet('/member', email);
+        return user.publicKey;
+    }
+
     // async prepareUserMap() {
     //     const users = await this.listUsers();
     //     for (let user of users) {

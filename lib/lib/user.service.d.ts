@@ -4,6 +4,7 @@ declare class UserService {
     getUserInfo(): Promise<any>;
     setUserConf(baseApi: string, email?: string): Promise<boolean>;
     setUpKeys(): Promise<void>;
+    getPublicKeyByEmail(email: string): Promise<string>;
 }
 export declare const userService: UserService;
 export {};

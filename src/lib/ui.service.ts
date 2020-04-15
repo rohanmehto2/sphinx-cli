@@ -18,6 +18,8 @@ export const EMOJIS = {
     WARNING: get('warning'),
     RELIEVED: get('relieved'),
     CONFUSED: get('confused'),
+    SMILE: get('slightly_smiling_face'),
+    HOURGLASS: get('hourglass_flowing_sand'),
     HEART: get('heart'),
     COFFEE: get('coffee'),
     BEER: get('beer'),
@@ -39,7 +41,7 @@ export const EMOJIS = {
 
 export const MESSAGES = {
     ASK_EMAIL: `${EMOJIS.EMAIL}  Enter your registered e-mail address:`,
-    ASK_EMAIL_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter your username or e-mail address.')}`,
+    ASK_EMAIL_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter a valid e-mail address.')}`,
     ASK_PWD: `${EMOJIS.KEY} ${chalk.greenBright('Enter your password:')}`,
     ASK_PWD_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter your password')}`,
     ASK_SERVER_ADDRS: `${EMOJIS.SERVER}  Enter full address of the sphinx server:`,
@@ -50,5 +52,11 @@ export const MESSAGES = {
     KEY_ROTATION_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Key rotation successfull')}`,
     KEY_ROTATION_ABORT: `${EMOJIS.RELIEVED}  ${chalk.greenBright('Key rotation aborted')}`,
     INVALID_INPUT: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Invalid input')}`,
+    SECRET_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Secret created successfull')}`,
+    ASK_RECIPIENT: `${EMOJIS.EMAIL}  Enter recipient's e-mail address:`,
+    ASK_SECRET_NAME: `${EMOJIS.PAGE}  Enter secret's name:`,
+    ASK_SECRET: `${EMOJIS.LOCK_PEN} ${chalk.greenBright('Enter secret:')}`,
+    ASK_DESC: `${EMOJIS.PAGE}  Enter a short description (optional):`,
+    ASK_TTL: `${EMOJIS.HOURGLASS}  Enter secret's ttl in days ${chalk.cyanBright('(default: 3 Days)')} :`,
     RESOURCE_INVALID: (res: string) => {return `${EMOJIS.CONFUSED}  ` + chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
 }

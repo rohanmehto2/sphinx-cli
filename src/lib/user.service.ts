@@ -1,8 +1,5 @@
-const Configstore = require('configstore');
-const pkg = require('../../package.json');
-
 import { rest } from './rest-client.service';
-const conf = new Configstore(pkg.name);
+import { config } from './conf.service';
 
 class UserService {
 
@@ -18,14 +15,14 @@ class UserService {
     }
 
     async getUserInfo(): Promise<any> {
-        const email = conf.get('sphinx.email');
+        const email = config.getEmail();
         const user = await rest.httpGet('/member', email);
         return user.member;
     }
 
     async setUserConf(baseApi: string, email: string = ''): Promise<boolean> {
-        conf.set('sphinx.baseApi', baseApi);
-        conf.set('sphinx.email', email);
+        config.setBaseApi(baseApi);
+        config.setEmail(email);
         return true;
     }
 

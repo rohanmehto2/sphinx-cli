@@ -1,13 +1,10 @@
 const axios = require('axios').default;
-const Configstore = require('configstore');
-const pkg = require('../../package.json');
-
-const conf = new Configstore(pkg.name);
+import { config } from './conf.service';
 
 class RestService {
     constructor() {}
 
-    baseApi = conf.get('sphinx.baseApi');
+    baseApi = config.getBaseApi();
 
     async httpGet(url: string, path: string = '',  args: object = {}) {
         try {

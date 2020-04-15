@@ -36,5 +36,7 @@ export const MESSAGES = {
     ASK_PWD_ERR: `${chalk.red('Please enter your password')}`,
     ASK_SERVER_ADDRS: `${EMOJIS.EMAIL}  Enter your registered e-mail address:`,
     ASK_SERVER_ADDRS_ERR: `${chalk.red('Please enter a valid url')}`,
+    ASK_NAME: `${EMOJIS.EMAIL}  Enter your name:`,
+    INVALID_INPUT: `${chalk.red('Invalid input')}`,
     RESOURCE_INVALID: (res: string) => {return chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
 }

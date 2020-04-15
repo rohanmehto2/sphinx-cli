@@ -13,6 +13,8 @@ import { logout } from './commands/logout.command';
 import { configure } from './commands/configure.command';
 
 import { MESSAGES } from './lib/ui.service';
+import { rotate } from './commands/rotate.command';
+import { update } from './commands/update.command';
 
 // clear();
 log(
@@ -44,6 +46,24 @@ program
 	});
 
 program
+	.command('update <resource>')
+	.alias('u')
+	.description('Update profile data <name/password>')
+	.action(async (resource: string) => {
+		switch (resource) {
+			case 'password':
+				await update.changePassword();
+				break;
+			case 'name':
+				await update.changeName();
+				break;
+			default:
+				log(MESSAGES.RESOURCE_INVALID(resource));
+				break;
+		};
+	});
+
+program
 	.command('login')
 	.description('Login service')
 	.action(async () => {
@@ -59,11 +79,19 @@ program
 
 program
 	.command('configure')
+	.alias('c')
 	.description('Configure sphinx CLI')
 	.action(async () => {
 		await configure.conf();
 	});
 
+program
+	.command('rotate')
+	.alias('r')
+	.description('Rotate your encryption keys')
+	.action(async () => {
+		await rotate.rotateKey();
+	});
 
 if (!process.argv.slice(2).length/* || !/[arudl]/.test(process.argv.slice(2))*/) {
 	program.outputHelp()

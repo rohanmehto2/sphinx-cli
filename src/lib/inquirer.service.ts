@@ -64,6 +64,24 @@ class InquirerService {
         ];
         return inquirer.prompt(questions);
     }
+
+    async askName(): Promise<any> {
+        const questions = [
+            {
+                name: 'name',
+                type: 'input',
+                message: MESSAGES.ASK_NAME,
+                validate: (value: string) => {
+                    if (value.length) {
+                        return true;
+                    } else {
+                        return MESSAGES.INVALID_INPUT;
+                    }
+                }
+            },
+        ];
+        return inquirer.prompt(questions);
+    }
 }
 
 export const inquirerService = new InquirerService();

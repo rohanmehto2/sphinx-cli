@@ -1,5 +1,6 @@
 import { rest } from './rest-client.service';
 import { config } from './conf.service';
+import { crypto } from './crypto.service';
 
 class UserService {
 
@@ -24,6 +25,12 @@ class UserService {
         config.setBaseApi(baseApi);
         config.setEmail(email);
         return true;
+    }
+
+    async setUpKeys(): Promise<void> {
+        const user = await this.getUserInfo();
+        const publicKey = await crypto.generateKeyPair(user.name, user.email);
+        await rest.httpPut('/member', user.id, { publicKey });
     }
 
     // async prepareUserMap() {

@@ -82,6 +82,18 @@ class InquirerService {
         ];
         return inquirer.prompt(questions);
     }
+
+    askKeyRotationConfirmation(): Promise<any> {
+        const questions = [
+            {
+                name: 'rotateKey',
+                type: 'confirm',
+                message: MESSAGES.ASK_SURE,
+                default: false,
+            }
+        ];
+        return inquirer.prompt(questions);
+    }
 }
 
 export const inquirerService = new InquirerService();

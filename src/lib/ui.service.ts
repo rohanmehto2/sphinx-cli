@@ -1,5 +1,6 @@
 import { get } from 'node-emoji';
 const chalk = require('chalk');
+const figlet = require('figlet');
 
 export const EMOJIS = {
     KEY: get('key'),
@@ -40,10 +41,10 @@ export const EMOJIS = {
 };
 
 export const MESSAGES = {
+    WELCOME: `${chalk.redBright(figlet.textSync('sphinx-cli', { horizontalLayout: 'full' }))}`,
     ASK_EMAIL: `${EMOJIS.EMAIL}  Enter your registered e-mail address:`,
     ASK_EMAIL_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter a valid e-mail address.')}`,
     ASK_PWD: `${EMOJIS.KEY} ${chalk.greenBright('Enter your password:')}`,
-    ASK_PWD_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter your password')}`,
     ASK_SERVER_ADDRS: `${EMOJIS.SERVER}  Enter full address of the sphinx server:`,
     ASK_SERVER_ADDRS_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter a valid url')}`,
     ASK_NAME: `${EMOJIS.INFO_DESK}  Enter your name:`,
@@ -60,6 +61,11 @@ export const MESSAGES = {
     ASK_DESC: `${EMOJIS.PAGE}  Enter a short description (optional):`,
     ASK_TTL: `${EMOJIS.HOURGLASS}  Enter secret's ttl in days ${chalk.cyanBright('(default: 3 Days)')} :`,
     ASK_SELECT_SECRET: `${EMOJIS.LOCK_KEY} ${chalk.greenBright('Select a secret to read:')}`,
+    ASK_NEW_PWD: `${chalk.cyan('Enter a new password:')}`,
+    ASK_CONFIRM_PWD: `${chalk.cyan('Confirm new password:')}`,
+    PWD_MATCH_ERR: `${EMOJIS.EXCLAMATION}  ${chalk.red('Passwords do not match')}`,
+    PWD_CHANGE_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Password changed successfully')}`,
+    NAME_CHANGE_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Name changed successfully')}`,
     SECRET_CHOICE: (secret: any) => { return `${EMOJIS.LOCK} ${secret.secretName} ${EMOJIS.EMAIL}  ${chalk.whiteBright(secret.creatorEmail)}`},
     RESOURCE_INVALID: (res: string) => {return `${EMOJIS.CONFUSED}  ` + chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
 }

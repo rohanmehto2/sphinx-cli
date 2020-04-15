@@ -1,9 +1,6 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk');
 const clear = require('clear');
-const figlet = require('figlet');
-const path = require('path');
 const program = require('commander');
 const log = console.log;
 
@@ -19,11 +16,6 @@ import { create } from './commands/create.command';
 import { read } from './commands/read.command';
 
 // clear();
-log(
-	chalk.red(
-		figlet.textSync('sphinx-cli', { horizontalLayout: 'full' })
-	)
-);
 
 program
 	.version('0.0.1')
@@ -113,6 +105,7 @@ program
 	.command('configure')
 	.description('Configure sphinx CLI')
 	.action(async () => {
+		log(MESSAGES.WELCOME);
 		await configure.conf();
 	});
 

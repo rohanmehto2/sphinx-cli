@@ -27,7 +27,7 @@ class InquirerService {
                     if (value.length) {
                         return true;
                     } else {
-                        return MESSAGES.ASK_PWD_ERR;
+                        return MESSAGES.INVALID_INPUT;
                     }
                 }
             }
@@ -71,6 +71,54 @@ class InquirerService {
                 name: 'name',
                 type: 'input',
                 message: MESSAGES.ASK_NAME,
+                validate: (value: string) => {
+                    if (value.length) {
+                        return true;
+                    } else {
+                        return MESSAGES.INVALID_INPUT;
+                    }
+                }
+            },
+        ];
+        return inquirer.prompt(questions);
+    }
+
+    async askPassword(): Promise<any> {
+        const questions = [
+            {
+                name: 'password',
+                type: 'password',
+                message: MESSAGES.ASK_PWD,
+                validate: (value: string) => {
+                    if (value.length) {
+                        return true;
+                    } else {
+                        return MESSAGES.INVALID_INPUT;
+                    }
+                }
+            },
+        ];
+        return inquirer.prompt(questions);
+    }
+
+    async askNewPassword(): Promise<any> {
+        const questions = [
+            {
+                name: 'password',
+                type: 'password',
+                message: MESSAGES.ASK_NEW_PWD,
+                validate: (value: string) => {
+                    if (value.length) {
+                        return true;
+                    } else {
+                        return MESSAGES.INVALID_INPUT;
+                    }
+                }
+            },
+            {
+                name: 'confirmPassword',
+                type: 'password',
+                message: MESSAGES.ASK_CONFIRM_PWD,
                 validate: (value: string) => {
                     if (value.length) {
                         return true;

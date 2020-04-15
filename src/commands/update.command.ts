@@ -1,21 +1,31 @@
 import { inquirerService } from "../lib/inquirer.service";
 import { rest } from "../lib/rest-client.service";
 import { config } from "../lib/conf.service";
+import { userService } from "../lib/user.service";
+import { MESSAGES } from "../lib/ui.service";
 
 const chalk = require('chalk');
 const log = console.log;
 
 class Update {
 
-    async changePassword() {
+    async changePassword(): Promise<void> {
         // TODO
-        log(chalk.green('Password changed successfully'));
+        const pwd = await inquirerService.askPassword();
+        // verify current password
+        const newPassword = await inquirerService.askNewPassword();
+        if ( newPassword.password !== newPassword.confirmPassword) {
+            log(MESSAGES.PWD_MATCH_ERR);
+            return;
+        }
+        await userService.updateUser({ password: newPassword.password });
+        log(MESSAGES.PWD_CHANGE_SUCCESS);
     }
 
-    async changeName() {
+    async changeName(): Promise<void> {
         const name = inquirerService.askName();
         const user = rest.httpPut('/member', config.getEmail(), { name});
-        log(chalk.green('Name changed successfully'));
+        log(MESSAGES.NAME_CHANGE_SUCCESS);
     }
 }
 

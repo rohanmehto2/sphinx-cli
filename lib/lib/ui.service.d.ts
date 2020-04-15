@@ -54,5 +54,7 @@ export declare const MESSAGES: {
     ASK_SECRET: string;
     ASK_DESC: string;
     ASK_TTL: string;
+    ASK_SELECT_SECRET: string;
+    SECRET_CHOICE: (secret: any) => string;
     RESOURCE_INVALID: (res: string) => string;
 };

@@ -16,6 +16,7 @@ import { MESSAGES } from './lib/ui.service';
 import { rotate } from './commands/rotate.command';
 import { update } from './commands/update.command';
 import { create } from './commands/create.command';
+import { read } from './commands/read.command';
 
 // clear();
 log(
@@ -72,6 +73,21 @@ program
 		switch (resource) {
 			case 'secret':
 				await create.createSecret();
+				break;
+			default:
+				log(MESSAGES.RESOURCE_INVALID(resource));
+				break;
+		};
+	});
+
+program
+	.command('read <resource>')
+	.alias('r')
+	.description('Read resources <secret>')
+	.action(async (resource: string) => {
+		switch (resource) {
+			case 'secret':
+				await read.readSecret();
 				break;
 			default:
 				log(MESSAGES.RESOURCE_INVALID(resource));

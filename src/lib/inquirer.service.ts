@@ -149,6 +149,25 @@ class InquirerService {
         ];
         return inquirer.prompt(questions);
     }
+
+    askSelectSecret(secrets: Array<any>): Promise<any> {
+        let choices = [];
+        for (const idx in secrets) {
+            choices.push({
+                name: MESSAGES.SECRET_CHOICE(secrets[idx]),
+                value: idx,
+            });
+        }
+        const questions = [
+            {
+                name: 'secret',
+                type: 'list',
+                message: MESSAGES.ASK_SELECT_SECRET,
+                choices
+            }
+        ];
+        return inquirer.prompt(questions);
+    }
 }
 
 export const inquirerService = new InquirerService();

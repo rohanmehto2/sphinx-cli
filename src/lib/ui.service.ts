@@ -53,10 +53,13 @@ export const MESSAGES = {
     KEY_ROTATION_ABORT: `${EMOJIS.RELIEVED}  ${chalk.greenBright('Key rotation aborted')}`,
     INVALID_INPUT: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Invalid input')}`,
     SECRET_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Secret created successfull')}`,
+    READ_SECRET_SUCCESS: `${EMOJIS.UNLOCK}  ${chalk.greenBright('Secret decrypted. Copied to clipboard')}`,
     ASK_RECIPIENT: `${EMOJIS.EMAIL}  Enter recipient's e-mail address:`,
     ASK_SECRET_NAME: `${EMOJIS.PAGE}  Enter secret's name:`,
     ASK_SECRET: `${EMOJIS.LOCK_PEN} ${chalk.greenBright('Enter secret:')}`,
     ASK_DESC: `${EMOJIS.PAGE}  Enter a short description (optional):`,
     ASK_TTL: `${EMOJIS.HOURGLASS}  Enter secret's ttl in days ${chalk.cyanBright('(default: 3 Days)')} :`,
+    ASK_SELECT_SECRET: `${EMOJIS.LOCK_KEY} ${chalk.greenBright('Select a secret to read:')}`,
+    SECRET_CHOICE: (secret: any) => { return `${EMOJIS.LOCK} ${secret.secretName} ${EMOJIS.EMAIL}  ${chalk.whiteBright(secret.creatorEmail)}`},
     RESOURCE_INVALID: (res: string) => {return `${EMOJIS.CONFUSED}  ` + chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
 }

@@ -4,6 +4,7 @@ declare class InquirerService {
     askName(): Promise<any>;
     askKeyRotationConfirmation(): Promise<any>;
     askSecret(): Promise<any>;
+    askSelectSecret(secrets: Array<any>): Promise<any>;
 }
 export declare const inquirerService: InquirerService;
 export {};

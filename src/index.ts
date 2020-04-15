@@ -5,68 +5,69 @@ const clear = require('clear');
 const figlet = require('figlet');
 const path = require('path');
 const program = require('commander');
+const log = console.log;
 
 import { list } from './commands/list.command';
 import { login } from './commands/login.command';
 import { logout } from './commands/logout.command';
 import { configure } from './commands/configure.command';
 
-const log = console.log;
+import { MESSAGES } from './lib/ui.service';
 
 // clear();
 log(
-  chalk.red(
-    figlet.textSync('sphinx-cli', { horizontalLayout: 'full' })
-  )
+	chalk.red(
+		figlet.textSync('sphinx-cli', { horizontalLayout: 'full' })
+	)
 );
 
 program
-    .version('0.0.1')
-    .description('Sphinx CLI tool to share secrets');
+	.version('0.0.1')
+	.description('Sphinx CLI tool to share secrets');
 
 program
-    .command('list <resource>')
-    .alias('ls')
-    .description('List members or secrets')
-    .action(async (resource: string) => {
-        switch (resource) {
-            case 'members':
-                await list.listMembers();    
-                break;
-            case 'secrets':
-                await list.listSecrets();
-                break;
-            default:
-                log(chalk.red(`Invalid <resource> type ${chalk.redBright(resource)}`));
-                break;
-        };
-    });
+	.command('list <resource>')
+	.alias('ls')
+	.description('List members or secrets')
+	.action(async (resource: string) => {
+		switch (resource) {
+			case 'members':
+				await list.listMembers();
+				break;
+			case 'secrets':
+				await list.listSecrets();
+				break;
+			default:
+				log(MESSAGES.RESOURCE_INVALID(resource));
+				break;
+		};
+	});
 
 program
-    .command('login')
-    .description('Login service')
-    .action(async () => {
-        await login.login();
-    });
+	.command('login')
+	.description('Login service')
+	.action(async () => {
+		await login.login();
+	});
 
 program
-    .command('logout')
-    .description('Logout service')
-    .action(async () => {
-        await logout.logout();
-    });
+	.command('logout')
+	.description('Logout service')
+	.action(async () => {
+		await logout.logout();
+	});
 
 program
-    .command('configure')
-    .description('Configure sphinx CLI')
-    .action(async () => {
-        await configure.conf();
-    });
+	.command('configure')
+	.description('Configure sphinx CLI')
+	.action(async () => {
+		await configure.conf();
+	});
 
 
-if (!process.argv.slice(2).length) {
-    program.outputHelp();
-    process.exit();
+if (!process.argv.slice(2).length/* || !/[arudl]/.test(process.argv.slice(2))*/) {
+	program.outputHelp()
+	process.exit()
 }
 
 program.parse(process.argv);

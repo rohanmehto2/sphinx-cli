@@ -1,6 +1,7 @@
 import { userService } from '../lib/user.service';
 import { EMOJIS } from '../lib/ui.service';
 import { secretService } from '../lib/secret.service';
+// TODO: replace with cli-table3
 import { Table } from 'console-table-printer';
 // const chalk = require('chalk');
 // const log = console.log;

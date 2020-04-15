@@ -6,6 +6,7 @@ class Login {
 
     async login() {
         const credentials = await inquirerService.askCredentials();
+        log(credentials);
         log(chalk.green('Loggen in successfully'));
     }
 }

@@ -30,4 +30,5 @@ export declare const MESSAGES: {
     ASK_EMAIL_ERR: string;
     ASK_PWD: string;
     ASK_PWD_ERR: string;
+    RESOURCE_INVALID: (res: string) => any;
 };

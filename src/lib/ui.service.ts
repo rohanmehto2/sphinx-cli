@@ -10,6 +10,9 @@ export const EMOJIS = {
     PERSON: get('bust_in_silhouette'),
     EMAIL: get('email'),
     PAGE: get('page_facing_up'),
+    SERVER: get('desktop_computer'),
+    INFO_DESK: get('information_desk_person'),
+    RED_CIRCLE: get('red_circle'),
     HEART: get('heart'),
     COFFEE: get('coffee'),
     BEER: get('beer'),
@@ -31,12 +34,12 @@ export const EMOJIS = {
 
 export const MESSAGES = {
     ASK_EMAIL: `${EMOJIS.EMAIL}  Enter your registered e-mail address:`,
-    ASK_EMAIL_ERR: `${chalk.red('Please enter your username or e-mail address.')}`,
+    ASK_EMAIL_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter your username or e-mail address.')}`,
     ASK_PWD: `${EMOJIS.KEY} ${chalk.greenBright('Enter your password:')}`,
-    ASK_PWD_ERR: `${chalk.red('Please enter your password')}`,
-    ASK_SERVER_ADDRS: `${EMOJIS.EMAIL}  Enter your registered e-mail address:`,
-    ASK_SERVER_ADDRS_ERR: `${chalk.red('Please enter a valid url')}`,
-    ASK_NAME: `${EMOJIS.EMAIL}  Enter your name:`,
-    INVALID_INPUT: `${chalk.red('Invalid input')}`,
+    ASK_PWD_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter your password')}`,
+    ASK_SERVER_ADDRS: `${EMOJIS.SERVER}  Enter full address of the sphinx server:`,
+    ASK_SERVER_ADDRS_ERR: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Please enter a valid url')}`,
+    ASK_NAME: `${EMOJIS.INFO_DESK}  Enter your name:`,
+    INVALID_INPUT: `${EMOJIS.RED_CIRCLE}  ${chalk.red('Invalid input')}`,
     RESOURCE_INVALID: (res: string) => {return chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
 }

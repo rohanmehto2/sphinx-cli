@@ -10,8 +10,9 @@ class UserService {
     }
 
     async updateUser(data: object): Promise<boolean> {
-        const user = await this.getUserInfo();
-        await rest.httpPut('/member', user.id, data);
+        // const user = await this.getUserInfo();
+        const email = config.getEmail();
+        await rest.httpPut('/member', email, data);
         return true
     }
 
@@ -29,13 +30,14 @@ class UserService {
 
     async setUpKeys(): Promise<void> {
         const user = await this.getUserInfo();
+        const email = config.getEmail();
         const publicKey = await crypto.generateKeyPair(user.name, user.email);
-        await rest.httpPut('/member', user.id, { publicKey });
+        await rest.httpPut('/member', user.email, { publicKey });
     }
 
     async getPublicKeyByEmail(email: string): Promise<string> {
         const user = await rest.httpGet('/member', email);
-        return user.publicKey;
+        return user.member.publicKey;
     }
 
     // async prepareUserMap() {

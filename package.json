@@ -36,6 +36,7 @@
     "lodash": "^4.17.15",
     "node-emoji": "^1.10.0",
     "openpgp": "^4.10.1",
+    "ora": "^4.0.3",
     "path": "^0.12.7",
     "secure-random-password": "^0.2.1"
   },

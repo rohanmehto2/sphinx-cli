@@ -17,6 +17,7 @@ export declare const EMOJIS: {
     CONFUSED: string;
     SMILE: string;
     HOURGLASS: string;
+    CABINET: string;
     HEART: string;
     COFFEE: string;
     BEER: string;
@@ -61,6 +62,10 @@ export declare const MESSAGES: {
     PWD_MATCH_ERR: string;
     PWD_CHANGE_SUCCESS: string;
     NAME_CHANGE_SUCCESS: string;
+    LIST_MEM_WAIT: string;
+    LIST_SECRET_WAIT: string;
+    KEY_ROTATION_WAIT: string;
     SECRET_CHOICE: (secret: any) => string;
     RESOURCE_INVALID: (res: string) => string;
 };
+export declare const Spinner: () => any;

@@ -1,9 +1,9 @@
 import { userService } from "../lib/user.service";
-import { MESSAGES } from "../lib/ui.service";
+import { MESSAGES, Spinner } from "../lib/ui.service";
 import { inquirerService } from "../lib/inquirer.service";
 
-const chalk = require('chalk');
 const log = console.log;
+var spinner = Spinner();
 
 class Rotate {
 
@@ -14,7 +14,9 @@ class Rotate {
             log(MESSAGES.KEY_ROTATION_ABORT)
             return
         }
+        spinner.start(MESSAGES.KEY_ROTATION_WAIT);
         await userService.setUpKeys();
+        spinner.stop();
         log(MESSAGES.KEY_ROTATION_SUCCESS);
     }
 }

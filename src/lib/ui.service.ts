@@ -1,6 +1,8 @@
 import { get } from 'node-emoji';
 const chalk = require('chalk');
 const figlet = require('figlet');
+const CLI = require('clui');
+const ora = require('ora');
 
 export const EMOJIS = {
     KEY: get('key'),
@@ -21,6 +23,7 @@ export const EMOJIS = {
     CONFUSED: get('confused'),
     SMILE: get('slightly_smiling_face'),
     HOURGLASS: get('hourglass_flowing_sand'),
+    CABINET: get('file_cabinet'),
     HEART: get('heart'),
     COFFEE: get('coffee'),
     BEER: get('beer'),
@@ -66,6 +69,16 @@ export const MESSAGES = {
     PWD_MATCH_ERR: `${EMOJIS.EXCLAMATION}  ${chalk.red('Passwords do not match')}`,
     PWD_CHANGE_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Password changed successfully')}`,
     NAME_CHANGE_SUCCESS: `${EMOJIS.TICK_MARK}  ${chalk.greenBright('Name changed successfully')}`,
+    LIST_MEM_WAIT: `${EMOJIS.PERSON}  Fetching members...`,
+    LIST_SECRET_WAIT: `${EMOJIS.CABINET}  Fetching secrets...`,
+    KEY_ROTATION_WAIT: `${EMOJIS.KEY}  Generating new keys...`,
+    CREATE_SECRET_WAIT: `${EMOJIS.LOCK_PEN}  Encrypting secret...`,
+    READ_SECRET_WAIT: `${EMOJIS.LOCK_KEY}  Decrypting secret...`,
     SECRET_CHOICE: (secret: any) => { return `${EMOJIS.LOCK} ${secret.secretName} ${EMOJIS.EMAIL}  ${chalk.whiteBright(secret.creatorEmail)}`},
     RESOURCE_INVALID: (res: string) => {return `${EMOJIS.CONFUSED}  ` + chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
+}
+
+// TODO: Move spinner logic to method decorator
+export const Spinner = (): any => {
+    return ora({ spinner: 'point' });
 }

@@ -1,14 +1,22 @@
 import { userService } from '../lib/user.service';
-import { EMOJIS } from '../lib/ui.service';
+import { EMOJIS, MESSAGES, Spinner } from '../lib/ui.service';
 import { secretService } from '../lib/secret.service';
 // TODO: replace with cli-table3
 import { Table } from 'console-table-printer';
-// const chalk = require('chalk');
-// const log = console.log;
+
+var spinner = Spinner();
 
 class List {
 
+    async dummy() {
+        for (let i=0; i<1000000000; i++) {
+            continue;
+        }
+    }
+
     async listMembers() {
+        spinner.start(MESSAGES.LIST_MEM_WAIT);
+        await this.dummy();
         const users = await userService.listUsers();
         const p = new Table({
             columns: [
@@ -22,10 +30,12 @@ class List {
                 Email: `${EMOJIS.EMAIL}  <${user.email}>`
             });
         }
+        spinner.stop();
         p.printTable();
     }
 
     async listSecrets() {
+        spinner.start(MESSAGES.LIST_SECRET_WAIT);
         const secrets = await secretService.getAllSecrets();
         const p = new Table({
             columns: [
@@ -41,6 +51,7 @@ class List {
                 Description: `${EMOJIS.PAGE}  <${secret.description}>`
             });
         }
+        spinner.end();
         p.printTable();
     }
 }

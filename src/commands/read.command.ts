@@ -12,6 +12,7 @@ var spinner = Spinner();
 class Read {
 
     async readSecret() {
+        // TODO: move logic to secret service
         const secrets = await secretService.getAllSecrets();
         const id = await inquirerService.askSelectSecret(secrets);
         spinner.start(MESSAGES.READ_SECRET_WAIT);

@@ -8,15 +8,8 @@ var spinner = Spinner();
 
 class List {
 
-    async dummy() {
-        for (let i=0; i<1000000000; i++) {
-            continue;
-        }
-    }
-
     async listMembers() {
         spinner.start(MESSAGES.LIST_MEM_WAIT);
-        await this.dummy();
         const users = await userService.listUsers();
         const p = new Table({
             columns: [
@@ -41,6 +34,7 @@ class List {
             columns: [
                 { name: 'Secret', alignment: 'left', color: 'cyan' },
                 { name: 'Creator', alignment: 'left', color: 'white_bold' },
+                { name: 'TTL', alignment: 'left', color: 'white_bold' },
                 { name: 'Description', alignment: 'left' }
             ]
         });
@@ -48,10 +42,11 @@ class List {
             p.addRow({
                 Secret: `${EMOJIS.LOCK}${secret.secretName}`,
                 Creator: `${EMOJIS.EMAIL}  <${secret.creatorEmail}>`,
-                Description: `${EMOJIS.PAGE}  <${secret.description}>`
+                TTL: `${EMOJIS.HOURGLASS}  ${secret.ttl}h`,
+                Description: `${EMOJIS.PAGE}  ${secret.description}`
             });
         }
-        spinner.end();
+        spinner.stop();
         p.printTable();
     }
 }

@@ -23,8 +23,8 @@ class Update {
     }
 
     async changeName(): Promise<void> {
-        const name = inquirerService.askName();
-        const user = rest.httpPut('/member', config.getEmail(), { name});
+        const name = await inquirerService.askName();
+        const user = await rest.httpPut('/member', config.getEmail(), { name});
         log(MESSAGES.NAME_CHANGE_SUCCESS);
     }
 }

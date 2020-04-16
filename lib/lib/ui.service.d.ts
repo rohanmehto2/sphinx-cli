@@ -36,10 +36,10 @@ export declare const EMOJIS: {
     WINE: string;
 };
 export declare const MESSAGES: {
+    WELCOME: string;
     ASK_EMAIL: string;
     ASK_EMAIL_ERR: string;
     ASK_PWD: string;
-    ASK_PWD_ERR: string;
     ASK_SERVER_ADDRS: string;
     ASK_SERVER_ADDRS_ERR: string;
     ASK_NAME: string;
@@ -49,12 +49,18 @@ export declare const MESSAGES: {
     KEY_ROTATION_ABORT: string;
     INVALID_INPUT: string;
     SECRET_SUCCESS: string;
+    READ_SECRET_SUCCESS: string;
     ASK_RECIPIENT: string;
     ASK_SECRET_NAME: string;
     ASK_SECRET: string;
     ASK_DESC: string;
     ASK_TTL: string;
     ASK_SELECT_SECRET: string;
+    ASK_NEW_PWD: string;
+    ASK_CONFIRM_PWD: string;
+    PWD_MATCH_ERR: string;
+    PWD_CHANGE_SUCCESS: string;
+    NAME_CHANGE_SUCCESS: string;
     SECRET_CHOICE: (secret: any) => string;
     RESOURCE_INVALID: (res: string) => string;
 };

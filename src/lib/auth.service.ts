@@ -14,6 +14,7 @@ export class AuthService {
     private readonly keytarAccount = os.userInfo().username;
 
     async login(credentials: any) {
+        // TODO: handle wrong password
         const tokens = await rest.httpPost('/login', credentials);
         config.setJwtPublicKey(tokens.jwtPublicKey);
         await this.setRefreshToken(tokens.refreshToken);
@@ -27,11 +28,11 @@ export class AuthService {
         const refreshToken = await this.getRefreshToken();
         await rest.httpPost('/logout', { refreshToken });
         await this.deleteRefreshToken();
-        await this.deleteRefreshToken();
+        await this.deleteAccessToken();
     }
 
     async getAccessToken(): Promise<string> {
-        return await keytar.getPassword('sphinxAcessToken', this.keytarAccount);
+        return await keytar.getPassword('sphinxAccessToken', this.keytarAccount);
     }
 
     async getRefreshToken(): Promise<string> {

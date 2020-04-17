@@ -14,6 +14,7 @@ class Read {
 
     async readSecret() {
         // TODO: move logic to secret service
+        if (!(await config.isConfigured())) return
         if (!(await authService.isLoggedIn())) return
         const secrets = await secretService.getAllSecrets();
         const id = await inquirerService.askSelectSecret(secrets);

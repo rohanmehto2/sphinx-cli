@@ -29,6 +29,13 @@ export class ConfService {
     setJwtPublicKey(jwtPk: string): void {
         conf.set('sphinx.jwtPublicKey', jwtPk);
     }
+
+    async isConfigured(): Promise<boolean> {
+        if (this.getBaseApi() == null) {
+            return false;
+        }
+        return true;
+    }
 }
 
 export const config = new ConfService();

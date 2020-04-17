@@ -8,6 +8,7 @@ const log = console.log;
 class Login {
 
     async login() {
+        if (!(await config.isConfigured())) return
         const credentials = await inquirerService.askCredentials();
         await authService.login(credentials);
         config.setEmail(credentials.email);

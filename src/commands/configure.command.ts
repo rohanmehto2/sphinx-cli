@@ -10,6 +10,7 @@ class Configure {
         config.setBaseApi(conf.sphinxServer);
         log(chalk.green('Configuration done'));
     }
+
 }
 
 export const configure = new Configure();

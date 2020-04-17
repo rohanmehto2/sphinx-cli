@@ -4,12 +4,14 @@ import { secretService } from '../lib/secret.service';
 // TODO: replace with cli-table3
 import { Table } from 'console-table-printer';
 import { authService } from '../lib/auth.service';
+import { config } from '../lib/conf.service';
 
 var spinner = Spinner();
 
 class List {
 
     async listMembers() {
+        if (!(await config.isConfigured())) return
         if (!(await authService.isLoggedIn())) return
         spinner.start(MESSAGES.LIST_MEM_WAIT);
         const users = await userService.listUsers();
@@ -30,6 +32,7 @@ class List {
     }
 
     async listSecrets() {
+        if (!(await config.isConfigured())) return
         if (!(await authService.isLoggedIn())) return
         spinner.start(MESSAGES.LIST_SECRET_WAIT);
         const secrets = await secretService.getAllSecrets();

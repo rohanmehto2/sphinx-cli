@@ -6,5 +6,6 @@ export declare class ConfService {
     setEmail(email: string): void;
     setBaseApi(api: string): void;
     setJwtPublicKey(jwtPk: string): void;
+    isConfigured(): Promise<boolean>;
 }
 export declare const config: ConfService;

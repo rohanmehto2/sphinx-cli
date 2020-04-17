@@ -12,8 +12,8 @@ class Create {
     async createSecret() {
         if (!(await config.isConfigured())) return
         if (!(await authService.isLoggedIn())) return
-        spinner.start(MESSAGES.CREATE_SECRET_WAIT);
         const secret = await inquirerService.askSecret();
+        spinner.start(MESSAGES.CREATE_SECRET_WAIT);
         await secretService.createSecret(secret);
         spinner.stop();
         log(MESSAGES.SECRET_SUCCESS);

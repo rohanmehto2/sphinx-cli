@@ -30,7 +30,6 @@ class UserService {
 
     async setUpKeys(): Promise<void> {
         const user = await this.getUserInfo();
-        const email = config.getEmail();
         const publicKey = await crypto.generateKeyPair(user.name, user.email);
         await rest.httpPut('/member', user.email, { publicKey });
     }

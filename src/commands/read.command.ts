@@ -24,8 +24,8 @@ class Read {
         const plaintext = await crypto.decrypt(secret.secret, publicKey);
         // copy(plaintext);
         spinner.stop();
-        log(plaintext);
         log(MESSAGES.READ_SECRET_SUCCESS);
+        log(plaintext);
     }
 
 }

@@ -8,8 +8,6 @@ class Configure {
     async conf() {
         const conf = await inquirerService.askConfig();
         config.setBaseApi(conf.sphinxServer);
-        config.setEmail(conf.email);
-        log(conf);
         log(chalk.green('Configuration done'));
     }
 }

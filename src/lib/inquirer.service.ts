@@ -21,7 +21,6 @@ class InquirerService {
             {
                 name: 'password',
                 type: 'password',
-                mask: true,
                 message: MESSAGES.ASK_PWD,
                 validate: (value: string) => {
                     if (value.length) {
@@ -49,18 +48,6 @@ class InquirerService {
                     }
                 }
             },
-            {
-                name: 'email',
-                type: 'input',
-                message: MESSAGES.ASK_EMAIL,
-                validate: (value: string) => {
-                    if (value.length) {
-                        return true;
-                    } else {
-                        return MESSAGES.ASK_EMAIL_ERR;
-                    }
-                }
-            }
         ];
         return inquirer.prompt(questions);
     }

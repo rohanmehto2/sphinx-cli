@@ -14,12 +14,20 @@ export class ConfService {
         return conf.get('sphinx.baseApi');
     }
 
-    setEmail(email: string) {
+    getJwtPublicKey(): string {
+        return conf.get('sphinx.jwtPublicKey');
+    }
+
+    setEmail(email: string): void {
         conf.set('sphinx.email', email);
     }
 
-    setBaseApi(api: string) {
+    setBaseApi(api: string): void {
         conf.set('sphinx.baseApi', api);
+    }
+
+    setJwtPublicKey(jwtPk: string): void {
+        conf.set('sphinx.jwtPublicKey', jwtPk);
     }
 }
 

@@ -79,9 +79,9 @@ class CryptoService {
 
     async keyExists(): Promise<boolean> {
         const key = await keytar.getPassword('sphinxKey', this.keytarAccount);
-        if (key)
-            return true;
-        return false;
+        if (key != null)
+            return false;
+        return true;
     }
 }
 

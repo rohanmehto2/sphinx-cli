@@ -1,11 +1,14 @@
+import { authService } from '../lib/auth.service';
+import { MESSAGES } from '../lib/ui.service';
 const chalk = require('chalk');
 const log = console.log;
 
 class Logout {
 
     async logout() {
-        // TODO
-        log(chalk.green('Logged out successfully'));
+        // isLoggedIn
+        await authService.logout();
+        log(MESSAGES.LOGOUT_SUCCESS);
     }
 }
 

@@ -62,9 +62,17 @@ export declare const MESSAGES: {
     PWD_MATCH_ERR: string;
     PWD_CHANGE_SUCCESS: string;
     NAME_CHANGE_SUCCESS: string;
+    LOGIN_SUCCESS: string;
+    LOGOUT_SUCCESS: string;
     LIST_MEM_WAIT: string;
     LIST_SECRET_WAIT: string;
     KEY_ROTATION_WAIT: string;
+    CREATE_SECRET_WAIT: string;
+    READ_SECRET_WAIT: string;
+    NOT_LOGGED_IN: string;
+    LOGIN_REQ: string;
+    LOGGED_OUT: string;
+    INCORRECT_PASSWORD: string;
     SECRET_CHOICE: (secret: any) => string;
     RESOURCE_INVALID: (res: string) => string;
 };

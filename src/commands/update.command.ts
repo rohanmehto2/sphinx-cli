@@ -11,6 +11,7 @@ const log = console.log;
 class Update {
 
     async changePassword(): Promise<void> {
+        if (!(await authService.isLoggedIn())) return
         const pwd = await inquirerService.askPassword();
         const correct = await authService.verifyPassword(pwd.password);
         if (!correct) {
@@ -27,6 +28,7 @@ class Update {
     }
 
     async changeName(): Promise<void> {
+        if (!(await authService.isLoggedIn())) return
         const name = await inquirerService.askName();
         const user = await rest.httpPut('/member', config.getEmail(), { name: name.name });
         log(MESSAGES.NAME_CHANGE_SUCCESS);

@@ -1,5 +1,4 @@
 declare class List {
-    dummy(): Promise<void>;
     listMembers(): Promise<void>;
     listSecrets(): Promise<void>;
 }

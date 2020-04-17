@@ -3,12 +3,14 @@ import { EMOJIS, MESSAGES, Spinner } from '../lib/ui.service';
 import { secretService } from '../lib/secret.service';
 // TODO: replace with cli-table3
 import { Table } from 'console-table-printer';
+import { authService } from '../lib/auth.service';
 
 var spinner = Spinner();
 
 class List {
 
     async listMembers() {
+        if (!(await authService.isLoggedIn())) return
         spinner.start(MESSAGES.LIST_MEM_WAIT);
         const users = await userService.listUsers();
         const p = new Table({
@@ -28,6 +30,7 @@ class List {
     }
 
     async listSecrets() {
+        if (!(await authService.isLoggedIn())) return
         spinner.start(MESSAGES.LIST_SECRET_WAIT);
         const secrets = await secretService.getAllSecrets();
         const p = new Table({

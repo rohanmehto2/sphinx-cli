@@ -7,6 +7,7 @@ class Logout {
 
     async logout() {
         // isLoggedIn
+        if (!(await authService.isLoggedIn())) return
         await authService.logout();
         log(MESSAGES.LOGOUT_SUCCESS);
     }

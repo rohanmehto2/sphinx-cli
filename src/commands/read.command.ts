@@ -4,6 +4,7 @@ import { secretService } from "../lib/secret.service";
 import { MESSAGES, Spinner } from "../lib/ui.service";
 import { crypto } from "../lib/crypto.service";
 import { userService } from "../lib/user.service";
+import { authService } from "../lib/auth.service";
 // import copy from 'copy-to-clipboard';
 
 const log = console.log;
@@ -13,6 +14,7 @@ class Read {
 
     async readSecret() {
         // TODO: move logic to secret service
+        if (!(await authService.isLoggedIn())) return
         const secrets = await secretService.getAllSecrets();
         const id = await inquirerService.askSelectSecret(secrets);
         spinner.start(MESSAGES.READ_SECRET_WAIT);

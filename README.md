@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <a target="blank"><img src="https://i.ibb.co/0ML0ZC3/rsz-sphinx-logo2.jpg" width="120" alt="Sphinx Logo" /></a>
 </p>
 

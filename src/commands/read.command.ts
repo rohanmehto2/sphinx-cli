@@ -4,7 +4,8 @@ import { secretService } from "../lib/secret.service";
 import { MESSAGES, Spinner } from "../lib/ui.service";
 import { crypto } from "../lib/crypto.service";
 import { userService } from "../lib/user.service";
-import { authService } from "../lib/auth.service";
+import { isLoggedIn } from '../decorators/login.decorator'; 
+import { isConfigured } from '../decorators/config.decorator';
 // import copy from 'copy-to-clipboard';
 
 const log = console.log;
@@ -12,10 +13,10 @@ var spinner = Spinner();
 
 class Read {
 
+    @isConfigured
+    @isLoggedIn
     async readSecret() {
         // TODO: move logic to secret service
-        if (!(await config.isConfigured())) return
-        if (!(await authService.isLoggedIn())) return
         const secrets = await secretService.getAllSecrets();
         const id = await inquirerService.askSelectSecret(secrets);
         spinner.start(MESSAGES.READ_SECRET_WAIT);

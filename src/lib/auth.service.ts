@@ -28,9 +28,9 @@ export class AuthService {
     async logout(): Promise<void> {
         const refreshToken = await this.getRefreshToken();
         await rest.httpPost('/logout', { refreshToken });
+        await userService.cleanUpKeys();
         await this.deleteRefreshToken();
         await this.deleteAccessToken();
-        await userService.cleanUpKeys();
     }
 
     async getAccessToken(): Promise<string> {

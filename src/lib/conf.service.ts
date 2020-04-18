@@ -1,7 +1,10 @@
+import { MESSAGES } from "./ui.service";
+
 const Configstore = require('configstore');
 const pkg = require('../../package.json');
 
 const conf = new Configstore(pkg.name);
+const log = console.log;
 
 export class ConfService {
     constructor() {}
@@ -32,6 +35,7 @@ export class ConfService {
 
     async isConfigured(): Promise<boolean> {
         if (this.getBaseApi() == null) {
+            log(MESSAGES.CONFIG_REQ);
             return false;
         }
         return true;

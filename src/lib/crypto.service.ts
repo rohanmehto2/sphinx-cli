@@ -77,6 +77,11 @@ class CryptoService {
     //     return false;
     // }
 
+    async deleteKeyPair(): Promise<void> {
+        await keytar.deletePassword('sphinxKey', this.keytarAccount);
+        await keytar.deletePassword('sphinxPassphrase', this.keytarAccount);
+    }
+
     async keyExists(): Promise<boolean> {
         const key = await keytar.getPassword('sphinxKey', this.keytarAccount);
         if (key != null)

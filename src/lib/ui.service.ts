@@ -78,8 +78,10 @@ export const MESSAGES = {
     READ_SECRET_WAIT: `${EMOJIS.LOCK_KEY}  Decrypting secret...`,
     NOT_LOGGED_IN: `${EMOJIS.RED_CIRCLE} You are not logged in!`,
     LOGIN_REQ: `${EMOJIS.COFFEE} Please login to continue`,
+    CONFIG_REQ: `${EMOJIS.COFFEE} Please configure to continue`,
     LOGGED_OUT: `${EMOJIS.BOOM} You have been logged out. Please login again to continue.`,
     INCORRECT_PASSWORD: `${EMOJIS.RED_CIRCLE} Incorrect password! Please try again.`,
+    LOGIN_FAIL: `${chalk.red('Login failed! Please check your credentials')}`,
     SECRET_CHOICE: (secret: any) => { return `${EMOJIS.LOCK} ${secret.secretName} ${EMOJIS.EMAIL}  ${chalk.whiteBright(secret.creatorEmail)}`},
     RESOURCE_INVALID: (res: string) => {return `${EMOJIS.CONFUSED}  ` + chalk.red(`Invalid <resource> type ${chalk.redBright(res)}`)},
 }

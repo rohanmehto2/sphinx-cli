@@ -1,14 +1,15 @@
 import { authService } from '../lib/auth.service';
 import { MESSAGES } from '../lib/ui.service';
-import { config } from '../lib/conf.service';
-const chalk = require('chalk');
+import { isLoggedIn } from '../decorators/login.decorator'; 
+import { isConfigured } from '../decorators/config.decorator';
+
 const log = console.log;
 
 class Logout {
 
+    @isConfigured
+    @isLoggedIn
     async logout() {
-        if (!(await config.isConfigured())) return
-        if (!(await authService.isLoggedIn())) return
         await authService.logout();
         log(MESSAGES.LOGOUT_SUCCESS);
     }

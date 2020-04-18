@@ -1,17 +1,17 @@
 import { inquirerService } from "../lib/inquirer.service";
 import { secretService } from "../lib/secret.service";
 import { MESSAGES, Spinner } from "../lib/ui.service";
-import { authService } from "../lib/auth.service";
-import { config } from "../lib/conf.service";
+import { isLoggedIn } from '../decorators/login.decorator'; 
+import { isConfigured } from '../decorators/config.decorator';
 
 const log = console.log;
 var spinner = Spinner();
 
 class Create {
 
+    @isConfigured
+    @isLoggedIn
     async createSecret() {
-        if (!(await config.isConfigured())) return
-        if (!(await authService.isLoggedIn())) return
         const secret = await inquirerService.askSecret();
         spinner.start(MESSAGES.CREATE_SECRET_WAIT);
         await secretService.createSecret(secret);

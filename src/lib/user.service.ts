@@ -34,6 +34,12 @@ class UserService {
         await rest.httpPut('/member', user.email, { publicKey });
     }
 
+    async cleanUpKeys(): Promise<void> {
+        const user = await this.getUserInfo();
+        await crypto.deleteKeyPair();
+        await rest.httpPut('/member', user.email, { publicKey: null });
+    }
+
     async getPublicKeyByEmail(email: string): Promise<string> {
         const user = await rest.httpGet('/member', email);
         return user.member.publicKey;

@@ -13,22 +13,24 @@ export class AuthService {
 
     private readonly keytarAccount = os.userInfo().username;
 
-    async login(credentials: any) {
-        // TODO: handle wrong password
+    async login(credentials: any): Promise<boolean> {
         const tokens = await rest.httpPost('/login', credentials);
+        if (tokens == null) return false
         config.setJwtPublicKey(tokens.jwtPublicKey);
         await this.setRefreshToken(tokens.refreshToken);
         await this.setAccessToken(tokens.accessToken);
         if (!(await crypto.keyExists())) {
             await userService.setUpKeys();
         }
+        return true
     }
 
-    async logout() {
+    async logout(): Promise<void> {
         const refreshToken = await this.getRefreshToken();
         await rest.httpPost('/logout', { refreshToken });
         await this.deleteRefreshToken();
         await this.deleteAccessToken();
+        await userService.cleanUpKeys();
     }
 
     async getAccessToken(): Promise<string> {

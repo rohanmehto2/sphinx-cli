@@ -4,11 +4,11 @@ import { authService } from './auth.service';
 
 
 class RestService {
-    constructor() {}
+    constructor() { }
 
     baseApi = config.getBaseApi();
 
-    async httpGet(url: string, path: string = '',  args: any = {}): Promise<any> {
+    async httpGet(url: string, path: string = '', args: any = {}): Promise<any> {
         try {
             const accessToken = await authService.getAccessToken();
             args.headers = {
@@ -18,7 +18,7 @@ class RestService {
             const res = await axios.get(url, args);
             return res.data;
         } catch (err) {
-            return null;
+            console.log(err.message);
         }
     }
 
@@ -32,7 +32,7 @@ class RestService {
             const res = await axios.post(url, data, args);
             return res.data;
         } catch (err) {
-            return null;
+            console.log(err.message);
         }
     }
 
@@ -46,7 +46,7 @@ class RestService {
             const res = await axios.put(url, data, args);
             return res.data;
         } catch (err) {
-            return null;
+            console.log(err.message);
         }
     }
 
